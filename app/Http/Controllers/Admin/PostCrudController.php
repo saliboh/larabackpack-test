@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PostRequest;
+use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -59,7 +60,7 @@ class PostCrudController extends CrudController
         CRUD::setFromDb(); // set fields from db columns.
 
         CRUD::field('tags');
-        CRUD::field('user');
+        CRUD::field('user_id')->type('select')->model(User::class)->attribute('name')->entity('user');
 
 //        CRUD::field('posts')->subfields([ ['name' => 'notes'] ])
 //            ->pivotSelect([
